@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 
 
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'portfolio',
     component: PortfolioComponent
+  },
+  {
+    path: 'new-user',
+    component: CreateUserComponent
   },
   {
     path: '**',

@@ -12,6 +12,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PostsComponent } from './posts/posts.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
     PostsComponent,
     PortfolioComponent,
     LoginPageComponent,
+    CreateUserComponent,
   ],
   imports: [
     BrowserModule,
