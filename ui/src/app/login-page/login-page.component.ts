@@ -18,10 +18,6 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
   }
 
-
-  private handlePasswordInput(e) {
-  }
-
   private handleLogin() {
     this.router.navigate(["/portfolio"])
   }
