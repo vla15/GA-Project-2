@@ -3,6 +3,9 @@
     border: 1px solid black;
     margin:2px;
 }
+.card-container:hover {
+    cursor: pointer;
+}
 .card-vote-container {
     display: flex;
     flex-direction: column;
@@ -18,4 +21,8 @@
 img {
     height: 50px;
     width: 50px;
+}
+
+fa:hover {
+    cursor: pointer;
 }

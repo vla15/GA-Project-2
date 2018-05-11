@@ -1,15 +1,17 @@
 <section class="create-user-container">
-  <span>
-    {{usernameText}}
-    <input type="text" [(ngModel)]="username"/>
-  </span>
-  <span>
-    {{passwordOneText}}
-    <input type="password" [(ngModel)]="passwordOne"/>
-  </span>
-  <span>
-    {{passwordTwoText}}
-    <input type="password" [(ngModel)]="passwordTwo"/>
-  </span>
+  <ul>
+    <li>
+      {{usernameText}}
+      <input type="text" [(ngModel)]="username" />
+    </li>
+    <li>
+      {{passwordOneText}}
+      <input type="password" [(ngModel)]="passwordOne" />
+    </li>
+    <li>
+      {{passwordTwoText}}
+      <input type="password" [(ngModel)]="passwordTwo" />
+    </li>
+  </ul>
   <button (click)="handleCreateUser()">Create User</button>
 </section>

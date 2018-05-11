@@ -1,12 +1,14 @@
 <section class="login-page-container">
-  <span>
-    {{usernameText}}
-    <input type="text" [(ngModel)]="username"/>
-  </span>
-  <span>
-    {{passwordText}}
-    <input type="password" [(ngModel)]="password"/>
-  </span>
+  <ul>
+    <li>
+      {{usernameText}}
+      <input type="text" [(ngModel)]="username" />
+    </li>
+    <li>
+      {{passwordText}}
+      <input type="password" [(ngModel)]="password" />
+    </li>
+  </ul>
   <button (click)="handleLogin()">Login</button>
   <div>Don't have an account? Create one here <a routerLink="/create-user">here</a></div>
 </section>
