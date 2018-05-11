@@ -12,7 +12,6 @@ export class LoginPageComponent implements OnInit {
   private passwordText: string = "Password: "
   private username: string;
   private password: string;
-  private dummyPassword: string = "";
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -20,6 +19,7 @@ export class LoginPageComponent implements OnInit {
 
   private handleLogin() {
     this.router.navigate(["/portfolio"])
+    console.log(this.password);
   }
 
 }
