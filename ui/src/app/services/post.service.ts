@@ -7,7 +7,11 @@ export class PostService {
 
     }
 
-    getPosts() {
-        return this.http.get("api/users")
+    getAllPosts() {
+        return this.http.get("api/posts")
+    }
+
+    getPostById(postId: number) {
+        return this.http.get(`api/posts/${postId}`)
     }
 }

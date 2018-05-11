@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,15 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  private id: number;
-  private title: string;
+  @Input() id: number;
+  @Input() title: string;
+  @Input() body: string;
+  @Input() image: string;
+
   private bodyShortened: string;
-  private body: string;
-  private image: string;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.bodyShortened = this.body.substring(0, 1000);
   }
 
   handleClick() {

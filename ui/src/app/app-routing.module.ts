@@ -6,6 +6,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { PostContainerComponent } from './post-container/post-container.component';
 import { PostsComponent } from './posts/posts.component';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 
 
 
@@ -16,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: "posts/:id",
-    component: PostsComponent
+    component: PostDetailComponent
   },
   {
     path: 'login',

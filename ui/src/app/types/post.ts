@@ -1,7 +1,7 @@
-export interface Post {
+export class Post {
     id: number
     title: string
-    bodyShortened: string;
+    bodyShortened: string
     body: string
-    image: string
+    image?: string
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
+import { Router } from '@angular/router';
+import { Post } from '../types/post';
 
 @Component({
   selector: 'app-post-container',
@@ -8,11 +10,17 @@ import { PostService } from '../services/post.service';
 })
 export class PostContainerComponent implements OnInit {
 
-  constructor(private postSvc: PostService) { }
+  private posts: Post[] = [];
+
+  constructor(private postSvc: PostService, private router: Router) { }
 
   ngOnInit() {
-    this.postSvc.getPosts()
-      .subscribe(d => console.log(d.json()))
+    this.postSvc.getAllPosts()
+      .subscribe(posts => this.posts = posts.json())
+  }
+
+  viewPost(postId: number) {
+    this.router.navigate(["/posts", postId]);
   }
 
 }
