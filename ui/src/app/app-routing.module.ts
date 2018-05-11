@@ -1,18 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {FavoritesListComponent} from "./favorites-list/favorites-list.component";
-import {GifSearchPageComponent} from "./gif-search-page/gif-search-page.component";
+import { AppComponent } from './app.component';
+import { PostsComponent } from './posts/posts.component';
 
 
 
 const routes: Routes = [
   {
-    path: 'favorites',
-    component: FavoritesListComponent
-  },
-  {
-    path: '',
-    component: GifSearchPageComponent
+    path: '*',
+    component: PostsComponent
   }
 ];
 
