@@ -11,6 +11,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PostsComponent } from './posts/posts.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
     NavBarComponent,
     PostsComponent,
     PortfolioComponent,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,
