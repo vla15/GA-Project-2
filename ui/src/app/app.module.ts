@@ -36,6 +36,7 @@ import { PostService } from './services/post.service';
     AngularFontAwesomeModule
   ],
   providers: [
+    PostService
   ],
   bootstrap: [AppComponent]
 })
