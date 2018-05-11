@@ -21,8 +21,8 @@ const routes: Routes = [
     component: PortfolioComponent
   },
   {
-    path: '*',
-    component: PostsComponent
+    path: '**',
+    redirectTo: "posts"
   }
 ];
 
