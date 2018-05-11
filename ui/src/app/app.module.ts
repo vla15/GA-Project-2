@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 
 
 import {AppComponent} from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
@@ -15,6 +15,8 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { PostContainerComponent } from './post-container/post-container.component';
+
+import { PostService } from './services/post.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { PostContainerComponent } from './post-container/post-container.componen
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    HttpModule,
     FormsModule,
     AppRoutingModule,
     AngularFontAwesomeModule
