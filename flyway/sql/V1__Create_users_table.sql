@@ -1,4 +1,7 @@
-create table FAVORITE_GIFS (
+create table USERS(
     ID serial,
-    URL varchar NOT NULL
+    USER_NAME varchar(100),
+    FIRST_NAME varchar (100),
+    LAST_NAME varchar (100),
+    IMAGE varchar(200)
 );
