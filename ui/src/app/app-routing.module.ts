@@ -22,7 +22,7 @@ const routes: Routes = [
     component: PortfolioComponent
   },
   {
-    path: 'new-user',
+    path: 'create-user',
     component: CreateUserComponent
   },
   {
