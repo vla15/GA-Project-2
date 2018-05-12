@@ -3,10 +3,10 @@ package com.example.controllers;
 import com.example.models.Votes;
 import com.example.repositories.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import javax.ws.rs.Path;
 
 @RestController
 public class VotesController {
@@ -18,6 +18,19 @@ public class VotesController {
     public int getAllVotes(@PathVariable Long postId) {
         Votes voteFromDb = voteRepository.findOne(postId);
         return voteFromDb.getVoteCount();
+    }
+
+    @PostMapping("/{postId}")
+    public HttpStatus createVotesEntry(@RequestBody Votes newVote) {
+        voteRepository.save(newVote);
+        return HttpStatus.OK;
+    }
+
+    @DeleteMapping("/{postId}")
+    public HttpStatus deleteVotesEntry(@PathVariable Long postId) {
+        Votes voteFromDb = voteRepository.findOne(postId);
+        voteRepository.delete(voteFromDb.getId());
+        return HttpStatus.OK;
     }
 
     @PutMapping("/upvote/{postId}")

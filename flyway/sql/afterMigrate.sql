@@ -15,4 +15,4 @@ INSERT INTO VOTES
 values
 (1, 0),
 (1, 0),
-(1, 0),
+(1, 0);
