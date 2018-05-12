@@ -17,6 +17,9 @@ public class Votes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "POST_ID")
+    private Long postId;
+
     @Column(name = "VOTE_COUNT")
     private int voteCount;
 

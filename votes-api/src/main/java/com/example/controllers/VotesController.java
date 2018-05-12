@@ -6,17 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.Path;
-
 @RestController
 public class VotesController {
 
     @Autowired
     private VoteRepository voteRepository;
 
+    @RequestMapping("/")
+    public Iterable<Votes> getDemVotes() { return voteRepository.findAll(); }
+
+    @GetMapping("/")
+    public Iterable<Votes> getAllVotes() {
+        return voteRepository.findAll();
+    }
+
     @GetMapping("/{postId}")
-    public int getAllVotes(@PathVariable Long postId) {
-        Votes voteFromDb = voteRepository.findOne(postId);
+    public int getVoteByPostId(@PathVariable Long postId) {
+        Votes voteFromDb = voteRepository.findByPostId(postId);
         return voteFromDb.getVoteCount();
     }
 
