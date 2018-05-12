@@ -8,6 +8,7 @@ import { PostContainerComponent } from './post-container/post-container.componen
 import { PostsComponent } from './posts/posts.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { AddNewPostComponent } from './add-new-post/add-new-post.component';
+import { ErrorComponent } from './error/error.component';
 
 
 
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'create-post',
     component: AddNewPostComponent
+  },
+  {
+    path: "error",
+    component: ErrorComponent
   },
   {
     path: '**',

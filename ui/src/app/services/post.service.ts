@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Post } from '../types/post';
+import { Observable } from "rxjs";
 
 @Injectable()
 export class PostService { 
@@ -8,19 +9,19 @@ export class PostService {
 
     }
 
-    getAllPosts() {
+    getAllPosts(): Observable<Response> {
         return this.http.get("api/posts");
     }
 
-    getPostById(postId: number) {
+    getPostById(postId: number): Observable<Response> {
         return this.http.get(`api/posts/${postId}`);
     }
 
-    addNewPost(post: Post) {
+    addNewPost(post: Post): Observable<Response> {
         return this.http.post("api/posts", post);
     }
 
-    deletePost(postId: number) {
+    deletePost(postId: number): Observable<Response> {
         return this.http.delete(`api/posts/${postId}`);
     }
 }

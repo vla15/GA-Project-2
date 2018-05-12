@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { map, switchMap, concatMap } from 'rxjs/operators';
+import { Observable, Subject, ObservableInput } from 'rxjs';
 
 @Component({
   selector: 'app-post-detail',
@@ -13,20 +15,25 @@ export class PostDetailComponent implements OnInit {
   private body: string;
   private image: string;
   private id: number;
+  private observable = new Observable();
 
   constructor(private route: ActivatedRoute, private postSvc: PostService, private router: Router) { }
 
   ngOnInit() {
     this.route.params
-      .subscribe(param => {
-        this.postSvc.getPostById(param.id)
-          .subscribe(d => {
+      .pipe(concatMap(param => this.postSvc.getPostById(param.id)))
+      .subscribe(
+        (d: any) => {
+          if (d._body) {
             let data = d.json();
             for (let key in data) {
               this[key] = data[key]
             }
-          })
-    });
+          } else {
+            this.router.navigate(["/error"])
+          }
+        }
+      )
   }
 
   onDelete() {

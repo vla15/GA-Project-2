@@ -18,6 +18,7 @@ import { AddNewPostComponent } from './add-new-post/add-new-post.component';
 
 import { PostService } from './services/post.service';
 import { VoteService } from './services/vote.service';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { VoteService } from './services/vote.service';
     PostContainerComponent,
     PostDetailComponent,
     AddNewPostComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
