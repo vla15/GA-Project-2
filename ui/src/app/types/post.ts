@@ -1,7 +1,7 @@
 export class Post {
-    id: number
     title: string
-    bodyShortened: string
     body: string
+    userId?: number
+    id?: number
     image?: string
 }

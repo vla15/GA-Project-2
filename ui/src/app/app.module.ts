@@ -18,6 +18,7 @@ import { PostContainerComponent } from './post-container/post-container.componen
 
 import { PostService } from './services/post.service';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { AddNewPostComponent } from './add-new-post/add-new-post.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
     CreateUserComponent,
     PostContainerComponent,
     PostDetailComponent,
+    AddNewPostComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,8 @@
-<p>{{title}}</p>
-<section>
-  {{body}}
+<section class="post-detail-container">
+  <p>{{title}}</p>
+  <div>
+    {{body}}
+  </div>
 </section>
+<button (click)="onDelete()">Delete</button>
+<button (click)="onUpdate()">Update</button>

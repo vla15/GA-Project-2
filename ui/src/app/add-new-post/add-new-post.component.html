@@ -1,0 +1,12 @@
+<section>
+  <ul>
+    <li>
+      {{titleText}}
+      <input type="text" [(ngModel)]="title" id="input-title-box">
+    </li>
+    <li>
+      <textarea [(ngModel)]="body" rows="30" cols="120"></textarea>
+    </li>
+  </ul>
+  <button (click)="onSubmit()">Submit</button>
+</section>

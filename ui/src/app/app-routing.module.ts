@@ -7,6 +7,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { PostContainerComponent } from './post-container/post-container.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { AddNewPostComponent } from './add-new-post/add-new-post.component';
 
 
 
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'create-user',
     component: CreateUserComponent
+  },
+  {
+    path: 'create-post',
+    component: AddNewPostComponent
   },
   {
     path: '**',

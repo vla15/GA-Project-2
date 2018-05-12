@@ -23,4 +23,8 @@ export class PostContainerComponent implements OnInit {
     this.router.navigate(["/posts", postId]);
   }
 
+  addNewPost() {
+    this.router.navigate(["/create-post"])
+  }
+
 }

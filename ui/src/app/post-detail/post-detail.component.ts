@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
-import { ActivatedRoute } from '@angular/router';
-import { PARAMETERS } from '@angular/core/src/util/decorators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-detail',
@@ -15,7 +14,7 @@ export class PostDetailComponent implements OnInit {
   private image: string;
   private id: number;
 
-  constructor(private route: ActivatedRoute, private postSvc: PostService) { }
+  constructor(private route: ActivatedRoute, private postSvc: PostService, private router: Router) { }
 
   ngOnInit() {
     this.route.params
@@ -28,6 +27,14 @@ export class PostDetailComponent implements OnInit {
             }
           })
     });
+  }
+
+  onDelete() {
+    this.postSvc.deletePost(this.id)
+      .subscribe(
+        () => this.router.navigate(["/posts"]),
+        (e) => console.log("error while deleting", e)
+      )
   }
 
 }
