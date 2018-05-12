@@ -39,7 +39,7 @@ services:
     command: './gradlew bootRun'
     environment:
       - GRADLE_USER_HOME=cache
-      - SPRING_PROFILES_ACTIVE=
+      - SPRING_PROFILES_ACTIVE=dev
   posts-api:
     image: anapsix/alpine-java:8_jdk_unlimited
     ports:
@@ -61,7 +61,7 @@ services:
       - '8083:8083'
     working_dir: /app
     volumes:
-      - ./posts-api:/app
+      - ./votes-api:/app
     depends_on:
       - api-gateway
       - eureka
