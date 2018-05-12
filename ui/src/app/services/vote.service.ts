@@ -6,11 +6,19 @@ import { Observable } from "rxjs";
 export class VoteService {
     constructor(private http: Http) {}
 
-    getVotes(): Observable<Response> {
-        return this.http.get("/api/votes/1")
+    getVotesByPostId(postId: number): Observable<Response> {
+        return this.http.get(`/api/votes/${postId}`)
     }
 
     getAllVotes(): Observable<Response> {
         return this.http.get("/api/votes")
+    }
+
+    incrementVote(postId: number): Observable<Response> {
+        return this.http.put(`api/votes/upvote/${postId}`, {})
+    }
+
+    decrementVote(postId: number): Observable<Response> {
+        return this.http.put(`api/votes/downvote/${postId}`, {})
     }
 }

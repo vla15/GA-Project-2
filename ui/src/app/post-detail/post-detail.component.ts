@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, switchMap, concatMap } from 'rxjs/operators';
-import { Observable, Subject, ObservableInput } from 'rxjs';
+import { concatMap } from 'rxjs/operators';
+import { VoteService } from '../services/vote.service';
 
 @Component({
   selector: 'app-post-detail',
@@ -15,9 +15,8 @@ export class PostDetailComponent implements OnInit {
   private body: string;
   private image: string;
   private id: number;
-  private observable = new Observable();
 
-  constructor(private route: ActivatedRoute, private postSvc: PostService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private postSvc: PostService, private router: Router, private voteSvc: VoteService) { }
 
   ngOnInit() {
     this.route.params

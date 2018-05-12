@@ -1,16 +1,34 @@
 import { Injectable } from "@angular/core";
 import { Http, Response } from '@angular/http';
 import { Post } from '../types/post';
-import { Observable } from "rxjs";
+import { Vote } from '../types/vote';
+import { Observable, Subject, of, forkJoin } from "rxjs";
+import { concatMap, zip, map, mergeMap, mapTo, exhaustMap, switchMap } from 'rxjs/operators';
+import { VoteService } from './vote.service';
 
 @Injectable()
 export class PostService { 
-    constructor(private http: Http) {
+    private observable: Observable<any> = new Observable();
+    constructor(private http: Http, private voteSvc: VoteService) {
 
     }
 
-    getAllPosts(): Observable<Response> {
-        return this.http.get("api/posts");
+    getAllPosts(){
+        return this.http.get("api/posts")
+            .pipe(
+                map(p => p.json()),
+                mergeMap(posts => this.http.get("api/votes")
+                    .pipe(map(v => ({posts, votes: v.json()})))),
+                map(data => {
+                    let votes = data.votes;
+                    let posts = data.posts;
+                    let results = []
+                    for (var i = 0; i < posts.length; i++) {
+                        results.push(Object.assign(votes[i], posts[i]))
+                    }
+                    return results;
+                })
+            );
     }
 
     getPostById(postId: number): Observable<Response> {

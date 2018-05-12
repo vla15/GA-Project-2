@@ -1,7 +1,8 @@
 <section class="card-container">
   <div class="card-vote-container">
-    <fa name="arrow-up"></fa>
-    <fa name="arrow-down"></fa>
+    <fa name="arrow-up" (click)="handleVote('up')"></fa>
+    {{voteCount}}
+    <fa name="arrow-down" (click)="handleVote('down')"></fa>
   </div>
   <div class="card-image-container">
     <img src="https://www.cryptocoincreator.com/currency/jesusgodman/client/images/users/icon.png"/>

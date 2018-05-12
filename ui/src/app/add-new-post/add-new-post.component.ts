@@ -23,6 +23,9 @@ export class AddNewPostComponent implements OnInit {
       userId: 1,
       title: this.title,
       body: this.body,
+      postId: 4,
+      voteId: 4,
+      voteCount: 0
     }
     this.postSvc.addNewPost(post)
       .subscribe(

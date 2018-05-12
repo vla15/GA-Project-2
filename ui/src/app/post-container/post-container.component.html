@@ -2,7 +2,8 @@
 [id]="post.id"
 [body]="post.body"
 [title]="post.title"
-[image]="post.image"
-(click)="viewPost(post.id)">
+[image]="post.postImage"
+[userId]="post.userId"
+[voteCount]="post.voteCount">
 </app-posts>
 <button (click)="addNewPost()">Add new post</button>
