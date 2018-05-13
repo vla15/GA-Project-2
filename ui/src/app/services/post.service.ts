@@ -31,11 +31,16 @@ export class PostService {
             );
     }
 
+    updatePost(post): Observable<Response> {
+        console.log('review the post', post);
+        return this.http.put(`api/posts/${post.id}`, post);
+    }
+
     getPostById(postId: number): Observable<Response> {
         return this.http.get(`api/posts/${postId}`);
     }
 
-    addNewPost(post: Post): Observable<Response> {
+    addNewPost(post): Observable<Response> {
         return this.http.post("api/posts", post);
     }
 

@@ -18,6 +18,11 @@
     height: inherit;
 }
 
+.card-body-container {
+    flex: 1 auto;
+    text-align: left;
+}
+
 img {
     height: 50px;
     width: 50px;

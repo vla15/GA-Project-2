@@ -1,8 +1,22 @@
-<section class="post-detail-container">
+<section class="post-detail-container" *ngIf="!isUpdating">
   <p>{{title}}</p>
   <div>
     {{body}}
   </div>
 </section>
-<button (click)="onDelete()">Delete</button>
-<button (click)="onUpdate()">Update</button>
+<section *ngIf="isUpdating">
+  <ul>
+    <li>
+      {{editTitle}}
+      <input type="text" [(ngModel)]="titleHolder"/>
+    </li>
+    <li>
+      {{editBody}}
+      <textarea rows="30" cols="120" [(ngModel)]="bodyHolder"></textarea>
+    </li>
+  </ul>
+</section>
+<button *ngIf="!isUpdating" (click)="onDelete()">Delete</button>
+<button *ngIf="!isUpdating" (click)="onUpdate()">Update</button>
+<button *ngIf="isUpdating" (click)="cancelEditing()">Back</button>
+<button *ngIf="isUpdating" (click)="updatedPost()">Save</button>

@@ -11,14 +11,22 @@ export class VoteService {
     }
 
     getAllVotes(): Observable<Response> {
-        return this.http.get("/api/votes")
+        return this.http.get("/api/votes");
+    }
+
+    deleteVote(postId: number): Observable<Response> {
+        return this.http.delete(`api/votes/${postId}`);
+    } 
+
+    createNewVote(vote): Observable<Response> {
+        return this.http.post("api/votes", vote);
     }
 
     incrementVote(postId: number): Observable<Response> {
-        return this.http.put(`api/votes/upvote/${postId}`, {})
+        return this.http.put(`api/votes/upvote/${postId}`, {});
     }
 
     decrementVote(postId: number): Observable<Response> {
-        return this.http.put(`api/votes/downvote/${postId}`, {})
+        return this.http.put(`api/votes/downvote/${postId}`, {});
     }
 }

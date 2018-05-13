@@ -14,7 +14,6 @@ import { Subscription } from 'rxjs';
 export class PostContainerComponent implements OnInit, OnDestroy {
 
   private posts: Post[] = [];
-  private votes: Vote[] = [];
   private postSubscription: Subscription;
 
   constructor(private postSvc: PostService, private router: Router, private voteSvc: VoteService) { }
@@ -22,7 +21,6 @@ export class PostContainerComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.postSubscription = this.postSvc.getAllPosts()
       .subscribe(posts => {
-        console.log(posts);
         this.posts = posts
       });
   }

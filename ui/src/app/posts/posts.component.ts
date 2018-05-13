@@ -14,7 +14,7 @@ export class PostsComponent implements OnInit {
   @Input() body: string;
   @Input() image: string;
   @Input() userId: number;
-  @Input() voteCount: number;
+  private voteCount: number = 0;
 
   private bodyShortened: string;
   private voteObservable: Observable<any>;
@@ -23,6 +23,8 @@ export class PostsComponent implements OnInit {
 
   ngOnInit() {
     this.bodyShortened = this.body.substring(0, 1000);
+    this.voteSvc.getVotesByPostId(this.id)
+      .subscribe(vote => this.voteCount = vote.json().voteCount)
   }
 
   handleClick() {
@@ -31,8 +33,7 @@ export class PostsComponent implements OnInit {
 
   handleVote(type: string): void {
     this.voteObservable = type === "up" ? this.voteSvc.incrementVote(this.id) : this.voteSvc.decrementVote(this.id);
-    this.voteObservable.subscribe(d => console.log('was successful', d))
-
+    this.voteObservable.subscribe(d => this.voteCount = d.json().voteCount)
   }
 
 }

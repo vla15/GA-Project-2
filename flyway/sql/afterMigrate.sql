@@ -17,9 +17,11 @@ values
 (2, 0),
 (3, 0);
 
-INSERT INTO POSTS
-(VOTE_ID)
-values
-(1),
-(2),
-(3);
+UPDATE POSTS set
+VOTE_ID = 1 WHERE ID = 1;
+
+UPDATE POSTS set
+VOTE_ID = 2 WHERE ID = 2;
+
+UPDATE POSTS set
+VOTE_ID = 3 WHERE ID = 3;

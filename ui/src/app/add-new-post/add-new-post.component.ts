@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from '../types/post';
 import { PostService } from '../services/post.service';
 import { Router } from '@angular/router';
+import { map, mergeMap } from 'rxjs/operators';
+import { VoteService } from '../services/vote.service';
 
 @Component({
   selector: 'app-add-new-post',
@@ -13,24 +15,23 @@ export class AddNewPostComponent implements OnInit {
   private title: string;
   private body: string;
 
-  constructor(private postSvc: PostService, private router: Router) { }
+  constructor(private postSvc: PostService, private router: Router, private voteSvc: VoteService) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    let post: Post = {
+    let post = {
       userId: 1,
       title: this.title,
       body: this.body,
-      postId: 4,
-      voteId: 4,
-      voteCount: 0
     }
     this.postSvc.addNewPost(post)
+      .pipe(map(p => ({postId: p.json().id, voteCount: 0})),
+            mergeMap(vote => this.voteSvc.createNewVote(vote)))
       .subscribe(
         () => this.router.navigate(["/posts"]),
-        (e) => console.log('couldnt submit post', e)
+        (e) => console.log('couldnt submit post', post, e)
       )
   }
 
