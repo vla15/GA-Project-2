@@ -16,3 +16,10 @@ values
 (1, 0),
 (2, 0),
 (3, 0);
+
+INSERT INTO POSTS
+(VOTE_ID)
+values
+(1),
+(2),
+(3);

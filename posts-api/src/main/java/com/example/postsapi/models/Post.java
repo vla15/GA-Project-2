@@ -26,6 +26,9 @@ public class Post {
     @Column(name = "USER_ID")
     private int userId;
 
+    @Column(name = "VOTE_ID")
+    private int voteId;
+
     @Column(name = "POST_IMAGE")
     private String postImage;
 }
