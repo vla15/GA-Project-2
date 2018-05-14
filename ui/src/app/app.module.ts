@@ -19,6 +19,7 @@ import { AddNewPostComponent } from './add-new-post/add-new-post.component';
 import { PostService } from './services/post.service';
 import { VoteService } from './services/vote.service';
 import { ErrorComponent } from './error/error.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ErrorComponent } from './error/error.component';
   ],
   providers: [
     PostService,
-    VoteService
+    VoteService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

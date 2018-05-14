@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { concatMap, mergeMap } from 'rxjs/operators';
 import { VoteService } from '../services/vote.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post-detail',
   templateUrl: './post-detail.component.html',
   styleUrls: ['./post-detail.component.css']
 })
-export class PostDetailComponent implements OnInit {
+export class PostDetailComponent implements OnInit, OnDestroy {
 
   private title: string;
   private body: string;
@@ -20,13 +21,19 @@ export class PostDetailComponent implements OnInit {
   private isUpdating: boolean = false;
   private titleHolder: string;
   private bodyHolder: string;
-  private editTitle: string = "Edit Title: "
-  private editBody: string = "Edit Body: "
+  private editTitle: string = "Edit Title: ";
+  private editBody: string = "Edit Body: ";
+  private routeSubscription: Subscription;
+  private deleteVoteSubscription: Subscription;
+  private updatePostSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private postSvc: PostService, private router: Router, private voteSvc: VoteService) { }
+  constructor(private route: ActivatedRoute, 
+    private postSvc: PostService, 
+    private router: Router, 
+    private voteSvc: VoteService) { }
 
   ngOnInit() {
-    this.route.params
+    this.routeSubscription = this.route.params
       .pipe(concatMap(param => this.postSvc.getPostById(param.id)))
       .subscribe(
         (d: any) => {
@@ -38,8 +45,13 @@ export class PostDetailComponent implements OnInit {
           } else {
             this.router.navigate(["/error"])
           }
-        }
-      )
+        })
+  }
+
+  ngOnDestroy() {
+    this.routeSubscription ? this.routeSubscription.unsubscribe() : null;
+    this.updatePostSubscription ? this.updatePostSubscription.unsubscribe() : null;
+    this.deleteVoteSubscription ? this.deleteVoteSubscription.unsubscribe() : null;
   }
 
   onUpdate() {
@@ -53,8 +65,6 @@ export class PostDetailComponent implements OnInit {
   }
 
   updatedPost() {
-    //three things
-    //first you need to put to update the vote
     let updatedPost = {
       title: this.titleHolder,
       body: this.bodyHolder,
@@ -63,21 +73,17 @@ export class PostDetailComponent implements OnInit {
       postImage: this.postImage,
       userId: this.userId
     }
-    this.postSvc.updatePost(updatedPost)
+    this.updatePostSubscription = this.postSvc.updatePost(updatedPost)
       .subscribe(post => {
         let postJSON = post.json();
-        console.log('the post', postJSON)
         this.title = postJSON.title;
         this.body = postJSON.body;
         this.isUpdating = !this.isUpdating;
       })
-    //then you need to reinitialize data
-    //then route change back to isUpdating
-
   }
 
   onDelete() {
-    this.voteSvc.deleteVote(this.id)
+    this.deleteVoteSubscription = this.voteSvc.deleteVote(this.id)
       .pipe(mergeMap(() => this.postSvc.deletePost(this.id)))
       .subscribe(
         () => this.router.navigate(["/posts"]),

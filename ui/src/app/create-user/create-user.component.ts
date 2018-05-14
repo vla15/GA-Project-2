@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-create-user',
@@ -15,19 +16,23 @@ export class CreateUserComponent implements OnInit {
   private passwordOne: string;
   private passwordTwo: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userSvc: UserService) { }
 
   ngOnInit() {
   }
 
-  //safety check on password
-
   private handleCreateUser() {
     if (this.arePasswordsEqual()) {
-      //submit
-      //redirect
-      //feed in id to portfolio
-      this.router.navigate(["/portfolio"])
+      let newUser = {
+        userName: this.username,
+        password: this.passwordOne
+      }
+      this.userSvc.createUser(newUser)
+        .subscribe(u => {
+          this.userSvc.userSubject.next(u.json())
+          console.log('user service');
+          this.router.navigate(["/portfolio"]);
+        })
     } else {
       alert("ERROR. Please make sure your passwords match");
     }

@@ -1,7 +1,8 @@
+
 INSERT INTO USERS
-(USER_NAME, FIRST_NAME, LAST_NAME)
+(USER_NAME, FIRST_NAME, LAST_NAME, PASSWORD)
 values
-('dummy', 'john', 'doe');
+('dummy', 'john', 'doe', 'password');
 
 INSERT INTO POSTS
 (USER_ID, TITLE, BODY)

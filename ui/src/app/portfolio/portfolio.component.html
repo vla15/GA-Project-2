@@ -4,7 +4,7 @@
     <ul>
       <li>
         {{usernameText}}
-        <input type="text" [(ngModel)]="username">
+        <input type="text" [(ngModel)]="username" readonly id="username-box">
       </li>
     </ul>
     <ul>
@@ -19,6 +19,7 @@
         <input type="text" [(ngModel)]="lastname">
       </li>
     </ul>
-    <button (submit)="handleSave()">Save</button>
+    <button (click)="handleSave()">Save</button>
+    <div>{{profileSavedText}}</div>
   </div>
 </section>

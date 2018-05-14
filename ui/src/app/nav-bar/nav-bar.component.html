@@ -6,8 +6,13 @@
       </a>
     </li>
     <li class="nav-item login">
-      <a routerLink="/login">
+      <a *ngIf="!isLoggedIn" routerLink="/login">
         Login
+      </a>
+    </li>
+    <li class="nav-item login">
+      <a *ngIf="isLoggedIn" routerLink="/portfolio">
+        Portfolio
       </a>
     </li>
   </ul>

@@ -17,6 +17,17 @@ public class UsersController {
         return userRepository.findAll();
     }
 
+    @PostMapping("/login")
+    public User checkLogin(@RequestBody User currentUser) {
+
+        User userFromDb = userRepository.findByUserName(currentUser.getUserName());
+        if (currentUser.getPassword().equals(userFromDb.getPassword())) {
+            return userFromDb;
+        } else {
+            return null;
+        }
+    }
+
     @GetMapping("/{userId}")
     public User findUserById(@PathVariable Long userId) {
         return userRepository.findOne(userId);

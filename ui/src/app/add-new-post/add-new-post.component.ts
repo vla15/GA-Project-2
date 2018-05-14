@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../types/post';
 import { PostService } from '../services/post.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { map, mergeMap } from 'rxjs/operators';
 import { VoteService } from '../services/vote.service';
 
@@ -14,15 +14,22 @@ export class AddNewPostComponent implements OnInit {
   private titleText: string = "Enter a title";
   private title: string;
   private body: string;
+  private userId: number;
 
-  constructor(private postSvc: PostService, private router: Router, private voteSvc: VoteService) { }
+  constructor(private postSvc: PostService, 
+    private router: Router, 
+    private voteSvc: VoteService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.forEach(param => {
+      this.userId = param.id
+    })
   }
 
   onSubmit() {
     let post = {
-      userId: 1,
+      userId: this.userId,
       title: this.title,
       body: this.body,
     }
